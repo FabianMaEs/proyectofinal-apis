@@ -73,38 +73,40 @@ app.post('/contacto', (req, res) => {
     }
   });
   
-  // Configurar el mensaje de correo
-  const mailOptions = {
-    from: 'miniproyectouno@gmail.com',
-    to: email,
-    subject: '¡Gracias por tu comentario, ' + name + '!',
-    text: 'Recibimos tu comentario y lo atenderemos lo antes posible.'
-  };  
+  // Configurar el mensaje de correo para el primer correo
+const mailOptions1 = {
+  from: 'miniproyectouno@gmail.com',
+  to: email,
+  subject: '¡Gracias por tu comentario, ' + name + '!',
+  text: 'Recibimos tu comentario y lo atenderemos lo antes posible.'
+};  
 
-  // Enviar correo
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log('Error al enviar el correo:', error);
-    } else {
-      console.log('Correo enviado:', info.response);
-    }
-  });
+// Enviar el primer correo
+transporter.sendMail(mailOptions1, (error, info) => {
+  if (error) {
+    console.log('Error al enviar el correo:', error);
+  } else {
+    console.log('Correo enviado:', info.response);
+  }
+});
 
-  const mailOptions = {
-    from: 'miniproyectouno@gmail.com',
-    to: 'fabmac865@gmail.com',
-    subject: 'Comentario recibido de ' + name + ' ' + apellido,
-    text: 'Mensaje: ' + message
-  };  
+// Configurar el mensaje de correo para el segundo correo
+const mailOptions2 = {
+  from: 'miniproyectouno@gmail.com',
+  to: 'fabmac865@gmail.com',
+  subject: 'Comentario recibido de ' + name + ' ' + apellido,
+  text: 'Mensaje: ' + message
+};  
 
-  // Enviar correo
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log('Error al enviar el correo:', error);
-    } else {
-      console.log('Correo enviado:', info.response);
-    }
-  });
+// Enviar el segundo correo
+transporter.sendMail(mailOptions2, (error, info) => {
+  if (error) {
+    console.log('Error al enviar el correo:', error);
+  } else {
+    console.log('Correo enviado:', info.response);
+  }
+});
+
 
   res.json({ message: 'Formulario de contacto enviado' });
 });
