@@ -90,6 +90,21 @@ app.post('/contacto', (req, res) => {
     }
   });
 
+  const mailOptions = {
+    from: 'miniproyectouno@gmail.com',
+    to: 'fabmac865@gmail.com',
+    subject: 'Comentario recibido de ' + name + ' ' + apellido,
+    text: 'Mensaje: ' + message
+  };  
+
+  // Enviar correo
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log('Error al enviar el correo:', error);
+    } else {
+      console.log('Correo enviado:', info.response);
+    }
+  });
 
   res.json({ message: 'Formulario de contacto enviado' });
 });
