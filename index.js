@@ -129,7 +129,7 @@ app.post("/contacto", (req, res) => {
     to: "miniproyectouno@gmail.com",
     subject: "¡Nuevo comentario!",
     text: `Recibimos un comentario de ${name}:
-    ${mensaje}
+    ${message}
     
     Responder a ${email}`
   };
