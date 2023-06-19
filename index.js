@@ -114,6 +114,35 @@ app.post("/contacto", (req, res) => {
     }
   });
 
+  // Configurar el transporter de Nodemailer
+  const transporter2 = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "miniproyectouno@gmail.com",
+      pass: "skbhhywjlspgpxkz",
+    },
+  });
+
+  // Configurar el mensaje de correo
+  const mailOptions2 = {
+    from: "miniproyectouno@gmail.com",
+    to: "miniproyectouno@gmail.com",
+    subject: "¡Nuevo comentario!",
+    text: `Recibimos un comentario de ${name}:
+    ${mensaje}
+    
+    Responder a ${email}`
+  };
+
+  // Enviar correo
+  transporter2.sendMail(mailOptions2, (error, info) => {
+    if (error) {
+      console.log("Error al enviar el correo:", error);
+    } else {
+      console.log("Correo enviado:", info.response);
+    }
+  });
+
   res.json({ message: "Formulario de contacto enviado" });
 });
 
@@ -156,6 +185,35 @@ app.post("/agendar", (req, res) => {
 
   // Enviar correo
   transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log("Error al enviar el correo:", error);
+    } else {
+      console.log("Correo enviado:", info.response);
+    }
+  });
+
+  
+  // Configurar el transporter de Nodemailer
+  const transporter2 = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "miniproyectouno@gmail.com",
+      pass: "skbhhywjlspgpxkz",
+    },
+  });
+
+  // Configurar el mensaje de correo
+  const mailOptions2 = {
+    from: "miniproyectouno@gmail.com",
+    to: "miniproyectouno@gmail.com",
+    subject: "¡Nuevo cita!",
+    text:  `Nueva cita agendada por ${formularioContacto.nombre} ${formularioContacto.apellido}. Estos son los detalles de la cita:
+    Fecha y hora: ${horario} ${formularioContacto.tiempo}
+    Médico: ${medico}`
+  };
+
+  // Enviar correo
+  transporter2.sendMail(mailOptions2, (error, info) => {
     if (error) {
       console.log("Error al enviar el correo:", error);
     } else {
