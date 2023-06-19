@@ -114,14 +114,6 @@ app.post("/contacto", (req, res) => {
     }
   });
 
-  // Configurar el transporter de Nodemailer
-  const transporter2 = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "miniproyectouno@gmail.com",
-      pass: "skbhhywjlspgpxkz",
-    },
-  });
 
   // Configurar el mensaje de correo
   const mailOptions2 = {
@@ -135,7 +127,7 @@ app.post("/contacto", (req, res) => {
   };
 
   // Enviar correo
-  transporter2.sendMail(mailOptions2, (error, info) => {
+  transporter.sendMail(mailOptions2, (error, info) => {
     if (error) {
       console.log("Error al enviar el correo:", error);
     } else {
@@ -192,16 +184,6 @@ app.post("/agendar", (req, res) => {
     }
   });
 
-  
-  // Configurar el transporter de Nodemailer
-  const transporter2 = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "miniproyectouno@gmail.com",
-      pass: "skbhhywjlspgpxkz",
-    },
-  });
-
   // Configurar el mensaje de correo
   const mailOptions2 = {
     from: "miniproyectouno@gmail.com",
@@ -213,7 +195,7 @@ app.post("/agendar", (req, res) => {
   };
 
   // Enviar correo
-  transporter2.sendMail(mailOptions2, (error, info) => {
+  transporter.sendMail(mailOptions2, (error, info) => {
     if (error) {
       console.log("Error al enviar el correo:", error);
     } else {
